@@ -10,11 +10,12 @@ package exterror
 import "strconv"
 
 type ExtError struct {
-	StatusCode int
-	ErrorCode  int
-	Message    string
+	StatusCode int     /// Http status code for REST APIs.
+	ErrorCode  int     /// Application defined error codes.
+	Message    string  /// Error message.
 }
 
+/// Interface for ExtError that implements builtin error interface.
 type IExtError interface {
 	GetStatusCode () int
 	GetErrorCode  () int
@@ -30,7 +31,7 @@ func (this *ExtError) Error () (string) {
 	return (`(` + strconv.Itoa(this.StatusCode) + `) ` + `(` + strconv.Itoa(this.ErrorCode) + `) ` + this.Message)
 }
 
-func NewExtError (scode, ecode int, msg string) (IExtError) {
+func New (scode, ecode int, msg string) (IExtError) {
 	return &ExtError{
 		StatusCode: scode,
 		ErrorCode:  ecode,
