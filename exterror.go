@@ -23,11 +23,11 @@ type IExtError interface {
 	error
 }
 
-func (this *ExtError) GetStatusCode () (int)    { return this.StatusCode }
-func (this *ExtError) GetErrorCode  () (int)    { return this.ErrorCode  }
-func (this *ExtError) GetMessage    () (string) { return this.Message    }
+func (this ExtError) GetStatusCode () (int)    { return this.StatusCode }
+func (this ExtError) GetErrorCode  () (int)    { return this.ErrorCode  }
+func (this ExtError) GetMessage    () (string) { return this.Message    }
 
-func (this *ExtError) Error () (string) {
+func (this ExtError) Error () (string) {
 	return (`(` + strconv.Itoa(this.StatusCode) + `) ` + `(` + strconv.Itoa(this.ErrorCode) + `) ` + this.Message)
 }
 
